@@ -20,5 +20,9 @@ jobs:
       uses: azure/CLI@v1
       with:
         inlineScript: |
+          echo parameters used
+          echo ${{ secrets.RG }}
+          echo ${{ secrets.ASP }}
+          echo ${{ secrets.WEBAPP }}
           az appservice plan create -g ${{ secrets.RG }} -n ${{ secrets.ASP }} --is-linux --number-of-workers 1 --sku B1
           az webapp create -g ${{ secrets.RG }} -p ${{ secrets.ASP }} -n ${{ secrets.WEBAPP }}  --runtime "node|10.14"
